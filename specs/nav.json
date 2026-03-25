@@ -1,0 +1,138 @@
+{
+  "primary": [
+    {
+      "label": "Services",
+      "href": "/services",
+      "children": [
+        {
+          "label": "Websites & AI Builder",
+          "href": "/services/websites-ai-builder",
+          "shortLabel": "Websites",
+          "description": "Fast, high-converting websites with AI built in.",
+          "icon": "Globe"
+        },
+        {
+          "label": "Media Marketing Automations",
+          "href": "/services/media-marketing-automations",
+          "shortLabel": "Media",
+          "description": "Your content machine, built and running on autopilot.",
+          "icon": "Megaphone"
+        },
+        {
+          "label": "Lead Finding & Follow-ups",
+          "href": "/services/lead-finding-follow-ups",
+          "shortLabel": "Lead Gen",
+          "description": "Find, qualify, and follow up—without lifting a finger.",
+          "icon": "UserSearch"
+        },
+        {
+          "label": "Email Automations",
+          "href": "/services/email-automations",
+          "shortLabel": "Email",
+          "description": "Email that works while you sleep.",
+          "icon": "Mail"
+        },
+        {
+          "label": "Integrations & Custom Workflows",
+          "href": "/services/integrations-custom-workflows",
+          "shortLabel": "Workflows",
+          "description": "Make every tool in your stack talk to every other.",
+          "icon": "GitBranch"
+        }
+      ]
+    },
+    {
+      "label": "Our Work",
+      "href": "/work",
+      "children": null
+    },
+    {
+      "label": "About",
+      "href": "/about",
+      "children": null
+    },
+    {
+      "label": "Creators",
+      "href": "/creators",
+      "children": null
+    }
+  ],
+  "cta": {
+    "label": "Contact Sales",
+    "href": "/contact",
+    "variant": "primary"
+  },
+  "secondaryCta": {
+    "label": "Get a Quote",
+    "href": "/contact#quote",
+    "variant": "secondary"
+  },
+  "mobile": {
+    "links": [
+      { "label": "Services", "href": "/services" },
+      { "label": "Our Work", "href": "/work" },
+      { "label": "About", "href": "/about" },
+      { "label": "Creators", "href": "/creators" },
+      { "label": "Contact", "href": "/contact" }
+    ],
+    "primaryCta": { "label": "Contact Sales", "href": "/contact" },
+    "secondaryCta": { "label": "Get a Quote", "href": "/contact#quote" }
+  },
+  "footer": {
+    "tagline": "Automation working quietly backstage.",
+    "columns": [
+      {
+        "heading": "Solutions",
+        "links": [
+          { "label": "Websites & AI Builder", "href": "/services/websites-ai-builder" },
+          { "label": "Media Automation", "href": "/services/media-marketing-automations" },
+          { "label": "Lead Automation", "href": "/services/lead-finding-follow-ups" },
+          { "label": "Email Automations", "href": "/services/email-automations" },
+          { "label": "Custom Workflows", "href": "/services/integrations-custom-workflows" }
+        ]
+      },
+      {
+        "heading": "Company",
+        "links": [
+          { "label": "About Us", "href": "/about" },
+          { "label": "The Creators", "href": "/creators" },
+          { "label": "Our Work", "href": "/work" },
+          { "label": "Contact", "href": "/contact" }
+        ]
+      },
+      {
+        "heading": "Resources",
+        "links": [
+          { "label": "Get a Quote", "href": "/contact#quote" },
+          { "label": "Privacy Policy", "href": "/legal/privacy" },
+          { "label": "Terms of Service", "href": "/legal/terms" }
+        ]
+      }
+    ],
+    "social": [
+      {
+        "platform": "LinkedIn",
+        "href": "[[LINKEDIN_URL]]",
+        "icon": "Linkedin",
+        "ariaLabel": "Backstage on LinkedIn"
+      },
+      {
+        "platform": "X (Twitter)",
+        "href": "[[TWITTER_URL]]",
+        "icon": "Twitter",
+        "ariaLabel": "Backstage on X"
+      },
+      {
+        "platform": "GitHub",
+        "href": "[[GITHUB_URL]]",
+        "icon": "Github",
+        "ariaLabel": "Backstage on GitHub"
+      }
+    ],
+    "legal": "© 2026 Backstage. All rights reserved.",
+    "legalLinks": [
+      { "label": "Privacy Policy", "href": "/legal/privacy" },
+      { "label": "Terms of Service", "href": "/legal/terms" }
+    ]
+  }
+}

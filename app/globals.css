@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette — HSL values for shadcn compatibility */
+    --background: 40 20% 95%;        /* bone #F6F4EF */
+    --foreground: 210 15% 8%;        /* charcoal #0F1317 */
+
+    --card: 40 18% 97%;              /* off-white card */
+    --card-foreground: 210 15% 8%;
+
+    --popover: 40 20% 97%;
+    --popover-foreground: 210 15% 8%;
+
+    --primary: 212 82% 34%;          /* aegean #0A5AA1 */
+    --primary-foreground: 40 20% 95%;
+
+    --secondary: 170 45% 34%;        /* olive #2E7D6D */
+    --secondary-foreground: 40 20% 95%;
+
+    --muted: 40 15% 88%;             /* bone-300 */
+    --muted-foreground: 210 10% 40%;
+
+    --accent: 40 43% 57%;            /* gold #C2A660 */
+    --accent-foreground: 210 15% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 15% 82%;
+    --input: 40 15% 85%;
+    --ring: 212 82% 34%;
+
+    --radius: 0.5rem;
+
+    /* Brand direct hex vars */
+    --color-bone: #F6F4EF;
+    --color-bone-dark: #EAE7DE;
+    --color-aegean: #0A5AA1;
+    --color-aegean-light: #1A6DB8;
+    --color-olive: #2E7D6D;
+    --color-olive-light: #3A9982;
+    --color-gold: #C2A660;
+    --color-gold-light: #D4BA7A;
+    --color-charcoal: #0F1317;
+    --color-charcoal-muted: #4A5568;
+  }
+
+  .dark {
+    --background: 210 15% 8%;
+    --foreground: 40 20% 92%;
+
+    --card: 210 14% 11%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 210 14% 10%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 212 70% 55%;
+    --primary-foreground: 210 15% 8%;
+
+    --secondary: 170 40% 45%;
+    --secondary-foreground: 210 15% 8%;
+
+    --muted: 210 14% 18%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 40 43% 57%;
+    --accent-foreground: 210 15% 8%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 14% 20%;
+    --input: 210 14% 20%;
+    --ring: 212 70% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bone text-charcoal font-sans;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Focus styles — WCAG 2.2 AA */
+  :focus-visible {
+    @apply outline-none ring-2 ring-aegean ring-offset-2 ring-offset-bone;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: #C2A660;
+    color: #0F1317;
+  }
+
+  /* Scrollbar (webkit) */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F6F4EF;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C4BDB0;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #AFA79A;
+  }
+}
+
+@layer utilities {
+  /* Typography utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Marble gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C2A660 0%, #D4BA7A 50%, #A98C4A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-aegean {
+    background: linear-gradient(135deg, #0A5AA1 0%, #1A6DB8 50%, #084A84 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Noise overlay for texture */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-16 md:py-20;
+  }
+
+  /* Marble card style */
+  .card-marble {
+    background: linear-gradient(135deg, #FDFCFA 0%, #F6F4EF 60%, #EAE7DE 100%);
+    border: 1px solid #D8D3C5;
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
