@@ -2,9 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import Link from "next/link"
-import { ArrowDown, Zap } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { MarqueeTicker } from "@/components/sections/MarqueeTicker"
 import { COPY } from "@/content/copy"
 import { cn } from "@/lib/utils"
 
@@ -15,18 +15,21 @@ export function Hero() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: prefersReducedMotion ? 0 : 0.12,
-        delayChildren: prefersReducedMotion ? 0 : 0.1,
+        staggerChildren: prefersReducedMotion ? 0 : 0.1,
+        delayChildren: prefersReducedMotion ? 0 : 0.05,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 24 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 28 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.19, 1, 0.22, 1] as [number, number, number, number] },
+      transition: {
+        duration: 0.75,
+        ease: [0.19, 1, 0.22, 1] as [number, number, number, number],
+      },
     },
   }
 
@@ -34,122 +37,117 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-bone pt-20"
+      className="relative flex min-h-screen flex-col overflow-hidden bg-charcoal"
       aria-labelledby="hero-heading"
     >
-      {/* Marble backdrop */}
+      {/* ── Background ── */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-br from-bone-200 via-bone-100 to-bone-300 opacity-60" />
-        {/* Gold vein lines */}
+        {/* Noise grain */}
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        {/* Gold ambient glow — upper right */}
+        <div className="absolute -right-32 top-0 h-[700px] w-[700px] rounded-full bg-gold/[0.07] blur-[120px]" />
+        {/* Subtle aegean glow — lower left */}
+        <div className="absolute -left-32 bottom-24 h-[500px] w-[500px] rounded-full bg-aegean/[0.06] blur-[100px]" />
+        {/* Faint grid — very subtle */}
         <svg
-          className="absolute inset-0 h-full w-full opacity-[0.06]"
+          className="absolute inset-0 h-full w-full opacity-[0.025]"
           xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
         >
           <defs>
-            <pattern
-              id="marble-grid"
-              width="80"
-              height="80"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 80 0 L 0 80"
-                stroke="#C2A660"
-                strokeWidth="0.5"
-                fill="none"
-              />
-              <path
-                d="M 0 0 L 80 80"
-                stroke="#C2A660"
-                strokeWidth="0.3"
-                fill="none"
-              />
+            <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+              <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#F6F4EF" strokeWidth="0.5" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#marble-grid)" />
+          <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
-        {/* Aegean orb */}
-        <div className="absolute -right-40 top-1/4 h-[600px] w-[600px] rounded-full bg-aegean/5 blur-3xl" />
-        <div className="absolute -left-20 bottom-1/4 h-[400px] w-[400px] rounded-full bg-olive/5 blur-3xl" />
       </div>
 
-      {/* Content */}
-      <motion.div
-        className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={itemVariants}>
-          <Badge variant="gold" className="mb-6 text-xs">
-            <Zap className="h-3 w-3" aria-hidden="true" />
-            AI-powered operations
-          </Badge>
-        </motion.div>
-
-        <motion.h1
-          id="hero-heading"
-          variants={itemVariants}
-          className={cn(
-            "font-heading text-5xl font-semibold leading-[1.08] tracking-tight text-charcoal text-balance",
-            "sm:text-6xl md:text-7xl lg:text-[5.5rem]"
-          )}
-        >
-          Automation working{" "}
-          <span className="relative">
-            <span className="text-gold">quietly</span>
-          </span>{" "}
-          backstage.
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-          className="mx-auto mt-6 max-w-2xl text-lg font-sans text-charcoal/60 leading-relaxed text-balance md:text-xl"
-        >
-          {hero.subheadline}
-        </motion.p>
-
+      {/* ── Content ── */}
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-28 pb-20 md:px-8 md:pt-36 md:pb-24">
         <motion.div
-          variants={itemVariants}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          className="mx-auto max-w-5xl text-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <Button asChild variant="primary" size="xl">
-            <Link href={hero.primaryCta.href}>{hero.primaryCta.label}</Link>
-          </Button>
-          <Button asChild variant="outline" size="xl">
-            <Link href={hero.secondaryCta.href}>{hero.secondaryCta.label}</Link>
-          </Button>
-        </motion.div>
-
-        <motion.p
-          variants={itemVariants}
-          className="mt-8 text-xs font-semibold tracking-widest uppercase text-charcoal/40 font-sans"
-        >
-          {hero.trustLine}
-        </motion.p>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: prefersReducedMotion ? 0 : 1.2, duration: 0.5 }}
-        aria-hidden="true"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] font-semibold tracking-widest uppercase text-charcoal/40 font-sans">
-            Scroll
-          </span>
-          <motion.div
-            animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          >
-            <ArrowDown className="h-4 w-4 text-charcoal/40" />
+          {/* Eyebrow */}
+          <motion.div variants={itemVariants}>
+            <span className="inline-flex items-center gap-2.5 text-[10px] font-sans font-semibold tracking-[0.25em] uppercase text-gold">
+              <span
+                className="inline-block h-px w-8 bg-gold/60"
+                aria-hidden="true"
+              />
+              {hero.eyebrow}
+              <span
+                className="inline-block h-px w-8 bg-gold/60"
+                aria-hidden="true"
+              />
+            </span>
           </motion.div>
-        </div>
-      </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            id="hero-heading"
+            variants={itemVariants}
+            className={cn(
+              "font-heading font-light text-bone tracking-tight text-balance mt-8",
+              "text-[2.75rem] leading-[1.05]",
+              "sm:text-6xl",
+              "md:text-7xl",
+              "lg:text-[5.5rem] lg:leading-[1.03]"
+            )}
+          >
+            The team behind the{" "}
+            <br className="hidden sm:block" />
+            brands you{" "}
+            <span className="text-gradient-gold italic">can&rsquo;t ignore.</span>
+          </motion.h1>
+
+          {/* Subheadline */}
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mt-7 max-w-2xl text-base font-sans font-light text-bone/55 leading-relaxed text-balance md:text-lg"
+          >
+            {hero.subheadline}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          >
+            <Button asChild variant="gold" size="xl" className="group font-sans">
+              <Link href={hero.primaryCta.href}>
+                {hero.primaryCta.label}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
+            </Button>
+            <Button asChild variant="outline-white" size="xl" className="font-sans">
+              <Link href={hero.secondaryCta.href}>
+                {hero.secondaryCta.label}
+              </Link>
+            </Button>
+          </motion.div>
+
+          {/* Micro trust line */}
+          <motion.p
+            variants={itemVariants}
+            className="mt-8 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-bone/20"
+          >
+            Websites · Media · Branding · Strategy
+          </motion.p>
+        </motion.div>
+      </div>
+
+      {/* ── Marquee — anchored at bottom of hero ── */}
+      <MarqueeTicker variant="dark" className="mt-auto" />
     </section>
   )
 }

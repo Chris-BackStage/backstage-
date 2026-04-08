@@ -1,64 +1,76 @@
 "use client"
 
-import type React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import * as Icons from "lucide-react"
 import { SectionContainer } from "@/components/common/SectionContainer"
-import { Badge } from "@/components/ui/badge"
 import { COPY } from "@/content/copy"
+import { cn } from "@/lib/utils"
 
 export function FeaturesGrid() {
   const prefersReducedMotion = useReducedMotion()
-  const { features } = COPY.home
+  const { differentiators } = COPY.home
 
   return (
-    <SectionContainer id="features">
-      <div className="mb-16 flex flex-col items-center text-center">
-        <Badge variant="olive" className="mb-4">
-          {features.label}
-        </Badge>
-        <h2 className="font-heading text-4xl font-semibold text-charcoal tracking-tight text-balance max-w-2xl md:text-5xl">
-          {features.headline}
-        </h2>
+    <section
+      id="why-backstage"
+      className="relative overflow-hidden bg-charcoal"
+      aria-label="Why Backstage"
+    >
+      {/* Top marquee ticker — inverted direction */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      >
+        <div className="absolute -left-40 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-gold/[0.04] blur-[80px]" />
+        <div className="absolute -right-40 top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-aegean/[0.05] blur-[80px]" />
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {features.items.map((feature, index) => {
-          const IconComponent =
-            (Icons as unknown as Record<string, React.ElementType>)[
-              feature.icon
-            ] ?? Icons.Zap
+      {/* Dividing grid lines */}
+      <div className="relative z-10">
+        <div className="mx-auto max-w-screen-lg px-6 pb-2 pt-12 md:px-8 lg:px-12 lg:pt-16">
+          <span className="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-gold">
+            {differentiators.label}
+          </span>
+        </div>
 
-          return (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: prefersReducedMotion ? 0 : (index % 3) * 0.08,
-              }}
-              className="group flex items-start gap-4 rounded-xl border border-bone-400 bg-white p-6 hover:border-aegean/30 hover:shadow-md transition-all duration-200"
-            >
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-aegean/10 border border-aegean/20">
-                <IconComponent
-                  className="h-5 w-5 text-aegean"
-                  aria-hidden="true"
-                />
-              </div>
-              <div>
-                <h3 className="font-sans font-semibold text-charcoal text-sm mb-1.5">
-                  {feature.title}
+        <div className="mx-auto max-w-screen-lg">
+          {/* Three columns separated by 1px bone/10 lines */}
+          <div className="grid grid-cols-1 divide-y divide-bone/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0">
+            {differentiators.items.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: prefersReducedMotion ? 0 : index * 0.1,
+                  ease: [0.19, 1, 0.22, 1] as [number, number, number, number],
+                }}
+                className="flex flex-col gap-5 px-6 py-12 md:px-10 lg:py-16 lg:px-12"
+              >
+                <span
+                  className={cn(
+                    "text-[10px] font-sans font-semibold tracking-[0.2em] uppercase",
+                    index === 0
+                      ? "text-gold"
+                      : index === 1
+                      ? "text-aegean-400"
+                      : "text-olive-400"
+                  )}
+                >
+                  {item.label}
+                </span>
+                <h3 className="font-heading text-2xl font-light text-bone leading-snug tracking-tight md:text-3xl">
+                  {item.title}
                 </h3>
-                <p className="text-sm font-sans text-charcoal/60 leading-relaxed">
-                  {feature.description}
+                <p className="text-sm font-sans text-bone/50 leading-relaxed">
+                  {item.description}
                 </p>
-              </div>
-            </motion.div>
-          )
-        })}
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
-    </SectionContainer>
+    </section>
   )
 }

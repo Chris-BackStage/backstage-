@@ -182,39 +182,13 @@ export default function CaseStudyPage({ params }: Props) {
                 <p className="text-xs font-semibold tracking-widest uppercase text-charcoal-300 font-sans mb-2">
                   {metric.label}
                 </p>
-                {"value" in metric ? (
-                  <p className="font-heading text-2xl font-bold text-charcoal">
+                <p className="font-heading text-2xl font-bold text-charcoal">
                     {metric.value}
                   </p>
-                ) : (
-                  <div className="space-y-1">
-                    <p className="text-xs text-charcoal-300 font-sans">
-                      Before:{" "}
-                      <span className="text-charcoal-500">{metric.before}</span>
-                    </p>
-                    <p className="text-sm font-bold text-olive font-sans">
-                      After: {metric.after}
-                    </p>
-                  </div>
-                )}
               </div>
             ))}
           </div>
 
-          {/* Quote */}
-          <blockquote className="rounded-2xl bg-aegean p-8 text-bone">
-            <p className="text-lg font-sans leading-relaxed mb-4 text-bone/90 italic">
-              &ldquo;{study.outcome.quote.text}&rdquo;
-            </p>
-            <footer>
-              <p className="text-sm font-semibold font-sans text-bone">
-                {study.outcome.quote.author}
-              </p>
-              <p className="text-xs font-sans text-bone/60">
-                {study.outcome.quote.role}
-              </p>
-            </footer>
-          </blockquote>
         </div>
       </SectionContainer>
 

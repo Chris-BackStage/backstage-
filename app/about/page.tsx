@@ -96,7 +96,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.map((value) => {
               const IconComponent =
-                (Icons as Record<string, React.ElementType>)[value.icon] ??
+                (Icons as unknown as Record<string, React.ElementType>)[value.icon] ??
                 Icons.Star
               return (
                 <div

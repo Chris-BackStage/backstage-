@@ -45,7 +45,7 @@ async function sendViaResend(payload: EmailPayload): Promise<EmailResult> {
       to: payload.to,
       subject: payload.subject,
       html: payload.html,
-      replyTo: payload.replyTo,
+      reply_to: payload.replyTo,
     });
 
     if (error) {
@@ -60,11 +60,10 @@ async function sendViaResend(payload: EmailPayload): Promise<EmailResult> {
 }
 
 async function sendViaSMTP(payload: EmailPayload): Promise<EmailResult> {
-  // SMTP implementation — install nodemailer and add types
-  // npm install nodemailer @types/nodemailer
+  // SMTP implementation — requires: npm install nodemailer @types/nodemailer
   try {
-    // Dynamic import to avoid bundling nodemailer in edge runtime
-    const nodemailer = await import("nodemailer");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
+    const nodemailer = require("nodemailer") as any;
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT ?? 587),

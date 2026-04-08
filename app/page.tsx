@@ -1,26 +1,21 @@
 import type { Metadata } from "next"
 import { Hero } from "@/components/sections/Hero"
-import { TrustBar } from "@/components/sections/TrustBar"
 import { Pillars } from "@/components/sections/Pillars"
 import { HowItWorks } from "@/components/sections/HowItWorks"
 import { FeaturesGrid } from "@/components/sections/FeaturesGrid"
-import { Integrations } from "@/components/sections/Integrations"
-import { Testimonials } from "@/components/sections/Testimonials"
-import { PricingPreview } from "@/components/sections/PricingPreview"
-import { HomeFAQ } from "@/components/sections/HomeFAQ"
 import { CTABanner } from "@/components/sections/CTABanner"
 
 export const metadata: Metadata = {
-  title: "Backstage — Automation Working Quietly Backstage",
+  title: "Backstage — The Team Behind the Brands You Can't Ignore",
   description:
-    "Backstage designs, builds, and runs the workflows behind your business—from websites and media to lead finding, follow-ups, and everyday email.",
+    "Backstage is a premium creative digital studio. We design and build websites, media systems, brand identities, and creative strategies for brands that refuse to blend in.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Backstage — AI Automation for Ambitious Businesses",
+    title: "Backstage — Creative Digital Studio",
     description:
-      "Websites, media automation, lead gen, email workflows, and custom integrations—built end-to-end by Backstage.",
+      "Websites, media marketing, digital branding, and creative strategy — built end-to-end by Backstage.",
     url: "/",
     type: "website",
   },
@@ -29,15 +24,15 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* Dark hero with marquee ticker */}
       <Hero />
-      <TrustBar />
+      {/* 4-service bento grid (dark) */}
       <Pillars />
+      {/* 3-step process (light) */}
       <HowItWorks />
+      {/* Why Backstage — 3-column dark differentiators */}
       <FeaturesGrid />
-      <Integrations />
-      <Testimonials />
-      <PricingPreview />
-      <HomeFAQ />
+      {/* Final CTA (dark) */}
       <CTABanner />
     </>
   )

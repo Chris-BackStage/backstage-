@@ -12,23 +12,28 @@ export function CTABanner() {
 
   return (
     <section
-      className="relative overflow-hidden bg-charcoal py-24 md:py-32"
+      className="relative overflow-hidden bg-charcoal py-24 md:py-36"
       aria-labelledby="cta-heading"
     >
-      {/* Background texture and orbs */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal to-[#1a2028]" />
-        {/* Diagonal stripe texture */}
+        {/* Noise grain */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
-            backgroundImage:
-              "repeating-linear-gradient(18deg, transparent, transparent 40px, #C2A660 40px, #C2A660 41px)",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           }}
         />
-        {/* Colour orbs */}
-        <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-aegean/20 blur-3xl" />
-        <div className="absolute -left-40 -bottom-40 h-[500px] w-[500px] rounded-full bg-olive/15 blur-3xl" />
+        {/* Gold glow — centered */}
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.07] blur-[100px]" />
+        {/* Diagonal line texture */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(18deg, transparent, transparent 60px, #C2A660 60px, #C2A660 61px)",
+          }}
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center md:px-8">
@@ -37,27 +42,27 @@ export function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{
-            duration: 0.6,
+            duration: 0.7,
             ease: [0.19, 1, 0.22, 1] as [number, number, number, number],
           }}
         >
-          <p className="mb-4 text-xs font-semibold tracking-widest uppercase text-gold font-sans">
+          <span className="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-gold">
             Ready to start
-          </p>
+          </span>
 
           <h2
             id="cta-heading"
-            className="font-heading text-4xl font-semibold text-bone tracking-tight text-balance mb-6 md:text-5xl lg:text-6xl"
+            className="mt-5 font-heading text-4xl font-light text-bone tracking-tight text-balance md:text-5xl lg:text-6xl"
           >
             {finalCta.headline}
           </h2>
 
-          <p className="text-base font-sans text-bone/70 leading-relaxed mb-10 max-w-lg mx-auto">
+          <p className="mx-auto mt-6 max-w-lg text-base font-sans font-light text-bone/55 leading-relaxed">
             {finalCta.description}
           </p>
 
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button asChild variant="gold" size="xl" className="group">
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Button asChild variant="gold" size="xl" className="group font-sans">
               <Link href={finalCta.primaryCta.href}>
                 {finalCta.primaryCta.label}
                 <ArrowRight
@@ -66,7 +71,7 @@ export function CTABanner() {
                 />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="xl">
+            <Button asChild variant="outline-white" size="xl" className="font-sans">
               <Link href={finalCta.secondaryCta.href}>
                 {finalCta.secondaryCta.label}
               </Link>

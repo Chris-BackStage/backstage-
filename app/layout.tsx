@@ -23,20 +23,21 @@ const sora = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://backstage.build"),
   title: {
-    default: "Backstage — Automation Working Quietly Backstage",
+    default: "Backstage — The Team Behind the Brands You Can't Ignore",
     template: "%s | Backstage",
   },
   description:
-    "Backstage designs, builds, and runs the workflows behind your business—from websites and media to lead finding, follow-ups, and everyday email.",
+    "Backstage is a premium creative digital studio. We design and build websites, media systems, brand identities, and creative strategies for brands that refuse to blend in.",
   keywords: [
-    "AI automation",
-    "business automation",
-    "workflow automation",
-    "marketing automation",
-    "lead automation",
-    "email automation",
+    "creative digital studio",
+    "website design",
     "website development",
+    "digital branding",
+    "brand identity",
+    "media marketing",
+    "creative strategy",
     "Next.js agency",
+    "brand design agency",
   ],
   authors: [{ name: "Backstage" }],
   creator: "Backstage",
@@ -45,23 +46,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: absoluteUrl("/"),
     siteName: "Backstage",
-    title: "Backstage — Automation Working Quietly Backstage",
+    title: "Backstage — Creative Digital Studio",
     description:
-      "Backstage designs, builds, and runs the workflows behind your business—from websites and media to lead finding, follow-ups, and everyday email.",
+      "Websites, media marketing, digital branding, and creative strategy — built end-to-end by Backstage.",
     images: [
       {
         url: absoluteUrl("/og-image.png"),
         width: 1200,
         height: 630,
-        alt: "Backstage — AI Automation",
+        alt: "Backstage — Creative Digital Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Backstage — Automation Working Quietly Backstage",
+    title: "Backstage — Creative Digital Studio",
     description:
-      "AI-powered workflows for ambitious businesses. Websites, media, leads, email, and custom automation.",
+      "Premium websites, media systems, brand identities, and creative strategies for brands that refuse to blend in.",
     images: [absoluteUrl("/og-image.png")],
     creator: "@backstage",
   },
@@ -140,7 +141,7 @@ export default function RootLayout({
               url: absoluteUrl("/"),
               logo: absoluteUrl("/logo.png"),
               description:
-                "Backstage designs, builds, and runs the workflows behind your business—from websites and media to lead finding, follow-ups, and everyday email.",
+                "Backstage is a premium creative digital studio. We design and build websites, media systems, brand identities, and creative strategies for brands that refuse to blend in.",
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "hello@backstage.build",
@@ -162,7 +163,7 @@ export default function RootLayout({
               "@type": "WebSite",
               url: absoluteUrl("/"),
               name: "Backstage",
-              description: "AI-powered automation for ambitious businesses.",
+              description: "Premium creative digital studio — websites, media, branding, strategy.",
               potentialAction: {
                 "@type": "SearchAction",
                 target: `${absoluteUrl("/work")}?q={search_term_string}`,

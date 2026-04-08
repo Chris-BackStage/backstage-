@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Linkedin, Twitter, Github } from "lucide-react"
+import { Linkedin, Twitter, Instagram } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { COPY } from "@/content/copy"
 import { cn } from "@/lib/utils"
@@ -30,7 +30,7 @@ export function Footer() {
             <div className="mt-6 flex gap-3" role="list" aria-label="Social media links">
               {footer.social.map((item) => {
                 const icons: Record<string, React.ElementType> = {
-                  Linkedin, Twitter, Github,
+                  Linkedin, Twitter, Instagram,
                 }
                 const Icon = icons[item.icon] ?? Linkedin
                 return (

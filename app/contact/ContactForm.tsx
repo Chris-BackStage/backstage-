@@ -43,13 +43,12 @@ function FieldError({ message }: { message?: string }) {
 // ---------------------------------------------------------------------------
 
 const BUDGET_OPTIONS = [
-  { value: "under-2k", label: "Under $2,000" },
-  { value: "2k-5k", label: "$2,000 – $5,000" },
-  { value: "5k-10k", label: "$5,000 – $10,000" },
-  { value: "10k-25k", label: "$10,000 – $25,000" },
-  { value: "25k-plus", label: "$25,000+" },
-  { value: "not-sure", label: "Not sure yet" },
-]
+  { value: "under-5k", label: "Under $5,000" },
+  { value: "5k-15k", label: "$5,000 – $15,000" },
+  { value: "15k-50k", label: "$15,000 – $50,000" },
+  { value: "50k-plus", label: "$50,000+" },
+  { value: "unsure", label: "Not sure yet" },
+] as const
 
 // ---------------------------------------------------------------------------
 // Timeline options
@@ -59,9 +58,8 @@ const TIMELINE_OPTIONS = [
   { value: "asap", label: "As soon as possible" },
   { value: "1-month", label: "Within 1 month" },
   { value: "1-3-months", label: "1–3 months" },
-  { value: "3-6-months", label: "3–6 months" },
-  { value: "flexible", label: "Flexible / just exploring" },
-]
+  { value: "exploring", label: "Just exploring" },
+] as const
 
 // ---------------------------------------------------------------------------
 // ContactForm component
@@ -84,15 +82,13 @@ export function ContactForm() {
       email: "",
       company: "",
       useCase: "",
-      budget: "",
-      timeline: "",
-      honeypot: "",
+      _honey: "",
     },
   })
 
   const onSubmit = async (data: ContactFormData) => {
     // Honeypot check — silently reject bots
-    if (data.honeypot) {
+    if (data._honey) {
       setStatus("success")
       return
     }
@@ -180,7 +176,7 @@ export function ContactForm() {
           id="backstage-website"
           tabIndex={-1}
           autoComplete="off"
-          {...register("honeypot")}
+          {...register("_honey")}
         />
       </div>
 

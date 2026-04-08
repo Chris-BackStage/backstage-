@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/validations";
 import { sendEmail, contactEmailTemplate, autoReplyTemplate } from "@/lib/email/sendEmail";
 import { rateLimit, getClientIp } from "@/lib/rateLimit";
+import { appendLeadToSheet } from "@/lib/sheets";
 
 export async function POST(request: NextRequest) {
   // Rate limiting
@@ -66,6 +67,11 @@ export async function POST(request: NextRequest) {
     subject: "We received your enquiry — Backstage",
     html: autoReplyTemplate(name),
   }).catch((err) => console.error("[contact/route] Auto-reply failed:", err));
+
+  // Append to Google Sheet (non-blocking — never fails the request)
+  await appendLeadToSheet({ name, email, company, useCase, budget, timeline }).catch(
+    (err) => console.error("[contact/route] Sheet append failed:", err)
+  );
 
   return NextResponse.json({ success: true });
 }

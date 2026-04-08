@@ -159,6 +159,14 @@ const config: Config = {
           from: { opacity: "0", transform: "translateX(32px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -166,6 +174,9 @@ const config: Config = {
         "fade-in-up": "fade-in-up 0.6s ease-out",
         "fade-in": "fade-in 0.4s ease-out",
         "slide-in-right": "slide-in-right 0.5s ease-out",
+        "marquee": "marquee 28s linear infinite",
+        "marquee-slow": "marquee 40s linear infinite",
+        "float": "float 6s ease-in-out infinite",
       },
       transitionTimingFunction: {
         "luxury": "cubic-bezier(0.25, 0.1, 0.25, 1)",

@@ -58,7 +58,7 @@ export default function ServiceDetailPage({ params }: Props) {
   if (!service) notFound()
 
   const IconComponent =
-    (Icons as Record<string, React.ElementType>)[service.icon] ?? Icons.Zap
+    (Icons as unknown as Record<string, React.ElementType>)[service.icon] ?? Icons.Zap
   const styles = colorStyles[service.color] ?? colorStyles.aegean
 
   return (
@@ -171,7 +171,7 @@ export default function ServiceDetailPage({ params }: Props) {
             <h2 className="font-heading text-2xl font-semibold text-charcoal mb-6">
               What you can expect
             </h2>
-            <FeatureList items={service.outcomes} iconColor="olive" />
+            <FeatureList items={[...service.outcomes]} iconColor="olive" />
           </div>
 
           {/* What you get */}
@@ -179,7 +179,7 @@ export default function ServiceDetailPage({ params }: Props) {
             <h2 className="font-heading text-2xl font-semibold text-charcoal mb-6">
               What you get
             </h2>
-            <FeatureList items={service.whatYouGet} iconColor="aegean" />
+            <FeatureList items={[...service.whatYouGet]} iconColor="aegean" />
           </div>
         </div>
 

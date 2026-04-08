@@ -77,7 +77,7 @@ export default function ServicesPage() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.items.map((service) => {
             const IconComponent =
-              (Icons as Record<string, React.ElementType>)[service.icon] ??
+              (Icons as unknown as Record<string, React.ElementType>)[service.icon] ??
               Icons.Zap
             const styles = colorStyles[service.color] ?? colorStyles.aegean
 
